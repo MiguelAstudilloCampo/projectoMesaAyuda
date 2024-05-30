@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{% endblock %}
+{% block menu %}
+    {% include "empleado/menu.html" %}
+{% endblock %}
+{% block contenido %}
+
+<div class="container">
+    <h3 class="text-center mt-3 fw-bold">Modulo Empleado</h3>
+    <a class="btn btn-secondary" href="/salir/">Salir</a>
+
+</div>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{% endblock %}

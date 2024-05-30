@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{% endblock %}
+{% block menu %}
+    {% include "empleado/menu.html" %}
+{% endblock %}
+{% block contenido %}
+
+<div class="container d-flex flex-column align-items-center justify-content-center gap-4">
+
+        <div class=" col-7 mt-4 p-4 border border-black p-2 mb-2 rounded-5 d-flex flex-column gap-4 justify-content-center align-items-center">
+
+            <h3 class="text-center mt-3 fw-bold">Registro de solicitud</h3>
+
+            <form class="d-flex col-12 flex-column gap-3 justify-content-center align-items-center" action="/registrarSolicitud/" method="post">
+                {% csrf_token %}
+                <div class="d-flex flex-column gap-2 text-center ">
+                    <span>Descripcion</span>
+                    <textarea cols="30" rows="3" type="text" name="descripcion" placeholder="Realice la descripcion del problema" value=""></textarea>
+                </div>
+                <div class="d-flex flex-column gap-2 text-center ">
+                    <span>Oficina Ambiente</span>
+
+                    <select name="idOficinaAmbiente" class="form-select" id="">
+                        <option hidden selected>Oficina</option>
+                        {% for ofi in oficinaAmbientes %}
+                            <option value="{{ofi.id}}">{{ofi.ofi_nombre}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="d-flex gap-3">
+                    <button  class="btn btn-primary">Registrar</button>
+                    <button type="reset" class="btn btn-danger">Cancelar</button>
+                </div>
+            </form>
+            {{mensaje}}
+        </div>
+    <a class="btn btn-secondary" href="/salir/"><i class="icon ion-android-exit"></i></ion-icon></a>
+
+</div>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{% endblock %}

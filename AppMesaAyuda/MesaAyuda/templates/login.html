@@ -1,0 +1,49 @@
+<div class="ll">
+{% extends "index.html" %} {% block encabezado %} {% include "encabezado.html"%}
+{% endblock %} {% block contenido %}
+
+<link rel="stylesheet" href="../static/Style/login.css" />
+
+<div class="">
+  <div class="container">
+    <div class="cc">
+      <div class="form-container">
+        <p class="title">Login</p>
+        <form class="form" method="post" action="login/">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              type="text"
+              name="correo"
+              required
+              class="inputField"
+              id="username"
+              placeholder="Username"
+            />
+          </div>
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              name="contraseña"
+              required
+              class="inputField"
+              id="password"
+              placeholder="Password"
+            />
+          </div>
+          <div class="d-flex gap-3">
+            <button class="btn btn-primary" id="button" type="submit">
+              Ingresar
+            </button>
+            <button class="btn btn-secondary" id="button">Registrarse</button>
+          </div>
+        </form>
+        {{mensaje}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</div>

@@ -1,0 +1,41 @@
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<header>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <div class="d-flex gap-4">
+            {% if user.user_foto != "" %}
+            <img src="/media/{{user.user_foto}}" alt="Foto Usuario" style="width:40px;" class="rounded-pill"> 
+        {% else %}  
+            <img src="/media/user-logo.png" alt="No foto" style="width:40px;" class="rounded-pill">
+        {% endif %}
+            <h6 class="navbar-brand text-center fs-6 d-flex mt-1">{{user.email}}</h6>
+          </div>
+          <!-- <a class="navbar-brand" href="#">Logo</a> -->
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="/inicioAdministrador/">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/listarCasosParaAsignar/">Casos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Soluciones</a>
+              </li>  
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Menu</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Link</a></li>
+                  <li><a class="dropdown-item" href="#">Another link</a></li>
+                  <li><a class="dropdown-item" href="#">A third link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
