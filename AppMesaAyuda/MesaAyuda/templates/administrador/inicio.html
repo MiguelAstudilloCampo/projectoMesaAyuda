@@ -10,9 +10,34 @@
 <div class="container d-flex flex-column justify-content-center align-items-center gap-4">
 
     <h3 class="text-center mt-3 fw-bold">Modulo Administrativo</h3>
-    <a class="btn btn-secondary" href="/salir/"><i class="icon ion-android-exit"></i></ion-icon></a>
-    
 
+    <div class="row" style="margin: 0 auto !important; width: 55%">
+        <div class="col-sm" style="margin-bottom: 4rem;">
+          <a href="/listarCasosParaAsignar/">
+            <div class="text-center icon" style="font-size: 5rem;">
+              <i class="icon ion-clipboard"></i>
+            </div>
+          </a>
+          <div class="text-center fw-bold">Casos</div>
+        </div>
+        <div class="col-sm">
+          <a href="/vistaGestionarUsuarios/">
+            <div class="text-center icon" style="font-size: 5rem;">
+              <i class="icon ion-person-add "></i>
+            </div>
+          </a>
+          <div class="text-center fw-bold">Registrar Usuarios</div>
+        </div>
+        <div class="col-sm" style="margin-bottom: 4rem;">
+          <a href="/salir/">
+            <div class="text-center icon" style="font-size: 5rem;">
+              <i class="icon ion-android-exit"></i>
+            </div>
+          </a>
+          <div class="text-center fw-bold">Salir</div>
+        </div>
+      </div>
+    
 </div>
 
 {% endblock %}

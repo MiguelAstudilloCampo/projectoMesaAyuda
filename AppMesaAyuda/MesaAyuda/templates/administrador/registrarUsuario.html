@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{% endblock %}
+{% block menu %}
+    {% include "administrador/menu.html" %}
+{% endblock %}
+{% block contenido %}
+
+<link rel="stylesheet" href="../../static/Style/agregarUsuario.css">
+
+<script>
+    function visualizarFoto(event) {
+        var imagen = document.getElementById('imagenPreview');
+        imagen.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>
+
+<div class="d-flex justify-content-center align-items-center" style="margin-bottom: 7rem;">
+    <form id="frmRegistrarUsuario" action="/registrarUsuario/" method="post" enctype="multipart/form-data"
+        class="was-validated w-75">
+        {% csrf_token%}
+        <br>
+        <div class="border border-black rounded border-2 p-5 d-flex flex-column justify-content-center align-items-center" >
+            <h3 class="text-center fw-bold">REGISTRAR USUARIO</h3>
+            <div class="form-group row">
+                <div class="mb-3 col-lg-4">
+                    <label for="txtNombres" class="fw-bold">Nombres</label>
+                    <input type="text" name="txtNombres" class="form-control" id="txtNombres" placeholder="Nombre" required>
+                </div>
+                <div class="mb-3 col-lg-4">
+                    <label for="txtApellidos" class="fw-bold">Apellidos</label>
+                    <input type="text" name="txtApellidos" class="form-control" id="txtApellidos" placeholder="Apellidos"
+                        required>
+                </div>
+                <div class="mb-3 col-lg-4">
+                    <label for="txtCorreo" class="fw-bold">Correo Electrónico</label>
+                    <input type="email" name="txtCorreo" class="form-control" id="txtCorreo"
+                        placeholder="correo Electrónico" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="mb-3 col-lg-6">
+                    <label for="cbTipo" class="fw-bold">Tipo Funcionario</label>
+                    <select name="cbTipo" id="cbTipo" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        {% for tipo in tipoUsuario %}
+                        <option value="{{tipo.0}}">{{tipo.0}}</option>
+                        {% endfor %}
+    
+                    </select>
+                </div>
+                <div class="mb-3 col-lg-6">
+                    <label for="cbTipo" class="fw-bold">Rol en el Sistema</label>
+                    <select name="cbRol" id="cbRol" class="form-select" required>
+                        <option value="">Seleccione</option>
+                        {% for rol in roles %}
+                        <option value="{{rol.id}}">{{rol.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center flex-column gap-1 alig-items-center text-center">
+                <span>Foto</span>
+                <input type="file" id="imagen" name="foto" onchange="visualizarFoto(event)">
+                <img id="imagenPreview" src="" alt="" style="max-width: 200px; max-height: 200px;">
+            </div>
+            <br>
+    
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <a href="/vistaGestionarUsuarios/"><button type="button" class="btn btn-danger mx-2">Cancelar</button></a>
+            </div>
+        </form>
+    </div>
+        </div>
+        
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{% endblock %}

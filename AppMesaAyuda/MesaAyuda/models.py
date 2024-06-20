@@ -6,6 +6,7 @@ tipoOficina = [('Administrativo','Administrativo'),('Formacion','Formacion')]
 tipoUsuario = [('Administrativo','Administrativo'),('Instructor','Instructor')]
 estadocaso = [('Solicitada','Solicitada'),('En Proceso','En Proceso'),('Finalizada','Finalizada')]
 tipoSolucion = [('Parcial', 'Parcial'),('Definitiva', 'Definitiva')]
+
 # tipoProcedimiento = [('Software','Software'),('Hadware','Hadware'),('','')]
 
 class oficinaAmbiente (models.Model):

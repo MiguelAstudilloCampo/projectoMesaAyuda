@@ -30,6 +30,12 @@ urlpatterns = [
     path('registrarSolicitud/', views.registroSolicitud),
     path('listarCasosParaAsignar/', views.listarCasos),
     path('asignarTecnicoCaso/', views.asignarTecnicoCaso),
+    path('listarCasosAsignados/', views.listarCasosTecnico),
+    path('solucionarCaso/', views.solucionarCaso),
+    path('vistaGestionarUsuarios/', views.vistaRegistrarUsuario),
+    path('vistaGestionarUsuarios/', views.vistaRegistrarUsuario),
+    path('registrarUsuario/', views.registrarUsuario),
+    path('recuperarClave/', views.recuperarClave),
     path('salir/', views.salir),
     
     

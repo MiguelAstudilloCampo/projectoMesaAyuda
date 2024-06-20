@@ -10,6 +10,14 @@
 //   .then
 // }
 
-function agregarIdCaso(id){
-  document.getElementById('idCaso').value=id
+function agregarIdCaso(id) {
+  document.getElementById("idCaso").value = id;
+}
+
+function mostrarImagen (evento){
+  const archivos = evento.target.files
+  const imagen = archivos[0]
+  const url = URL.createObjectURL(imagen)
+  const img = document.getElementById('imagenMostrar')
+  img.setAttribute('src',url)
 }
