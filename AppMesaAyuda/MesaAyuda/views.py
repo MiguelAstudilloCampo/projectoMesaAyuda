@@ -19,6 +19,14 @@ import random
 import string
 from django.contrib.auth.models import Group
 
+from django.db.models import Sum, Avg, Count
+import matplotlib.pyplot as plt
+import calendar
+from django.db.models.functions import ExtractMonth
+
+# from rest_framework import generics
+# from MesaAyuda.serializers import oficinaAmbienteSerializer
+
 # Create your views here.
 
 def inicio (request):
@@ -40,7 +48,6 @@ def login(request):
     else:
         mensaje =  'Usuario o Clave incorrectas'
         return render(request, 'login.html', {'mensaje': mensaje})
-    
 
 def Administrador (request):
     return render (request, "administrador/inicio.html")
@@ -53,7 +60,7 @@ def inicioAdministrador (request):
     else:
         mensaje ="Debe iniciar Sesion"
         return render (request, "login.html", {"mensaje":mensaje})
-    
+
 def inicioTecnico(request):
     if request.user.is_authenticated:
         datosSesion = {"user":request.user,
@@ -62,7 +69,7 @@ def inicioTecnico(request):
     else:
         mensaje ="Debe iniciar Sesion"
         return render (request, "login.html", {"mensaje":mensaje})
-    
+
 def inicioEmpleado(request):
     if request.user.is_authenticated:
         datosSesion = {"user":request.user,
@@ -71,7 +78,7 @@ def inicioEmpleado(request):
     else:
         mensaje ="Debe iniciar Sesion"
         return render (request, "login.html", {"mensaje":mensaje})
-    
+
 @csrf_exempt    
 def registroSolicitud (request):
     try:
@@ -120,7 +127,7 @@ def registroSolicitud (request):
     oficinaAmbientes = oficinaAmbiente.objects.all()
     retorno = {"mensaje": mensaje, "oficinasAmbientes": oficinaAmbientes}
     return render(request, "empleado/solicitud.html", retorno)    
-        
+
 def vistaSolicitud(request):
     if request.user.is_authenticated:
         oficinaAmbientes = oficinaAmbiente.objects.all()
@@ -133,7 +140,6 @@ def vistaSolicitud(request):
         mensaje="Debes iniciar sesion"
         return render (request,"login.html",{"mensaje":mensaje})
 
-    
 def enviarCorreo(asunto=None, mensaje=None, destinatario=None,archivo=None):
     remitente = settings.EMAIL_HOST_USER
     template = get_template('enviarCorreo.html')
@@ -151,7 +157,6 @@ def enviarCorreo(asunto=None, mensaje=None, destinatario=None,archivo=None):
     except SMTPException as error:
         print (error)
 
-    
 def listarCasos (request):
     try:
         mensaje=""
@@ -162,7 +167,6 @@ def listarCasos (request):
     
     retorno = {"listarCasos":listarCasos, "tecnicos":tecnicos, "mensaje":mensaje}
     return render (request, "administrador/listarCasos.html", retorno)
-
 
 def listarEmpleadosTecnicos(request):
     try:
@@ -204,7 +208,7 @@ def asignarTecnicoCaso (request):
     else:
         mensaje="Debes iniciar sesion"
         return render (request,"login.html",{"mensaje":mensaje})    
-    
+
 def listarCasosTecnico (request):
     if request.user.is_authenticated:
         try:
@@ -275,7 +279,7 @@ def solucionarCaso (request):
     else:
         mensaje="Debes iniciar sesion"
         return render (request,"login.html",{"mensaje":mensaje})
-    
+
 def generarPassword ():
     longitud = 10
     
@@ -296,7 +300,6 @@ def vistaRegistrarUsuario(request):
     else:
         mensaje = "Debe iniciar sesión"
         return render(request, "registrarUsuario.html", {"mensaje": mensaje})
-        
 
 def registrarUsuario(request):
     if request.user.is_authenticated:
@@ -341,12 +344,11 @@ def registrarUsuario(request):
             transaction.rollback()
             mensaje = f"{error}"
         retorno = {"mensaje": mensaje}
-        return render(request, "administrador/frmRegistrarUsuario.html", retorno)
+        return render(request, "administrador/registrarUsuario.html", retorno)
     else:
         mensaje = "Debe iniciar sesión"
-        return render(request, "frmIniciarSesion.html", {"mensaje": mensaje})
+        return render(request, "login.html", {"mensaje": mensaje})
 
-   
 def recuperarClave(request):
     try:
         correo = request.POST['correo']
@@ -374,7 +376,45 @@ def recuperarClave(request):
 
     return render(request, 'login.html', retorno)
 
+def vistaGestionarUsuarios(request):
+    if request.user.is_authenticated:
+        usuarios = User.objects.all()
+        retorno = {"usuarios": usuarios, "user": request.user,
+                   "rol": request.user.groups.get().name}
+        return render(request, "administrador/gestionarUsuarios.html", retorno)
+    else:
+        mensaje = "Debe iniciar sesión"
+        return render(request, "login.html", {"mensaje": mensaje})
+
+def estadistica (request):
+    if request.user.is_authenticated:
+        try:
+            return redirect("/graficas/")
+        except Error as error:
+            transaction.rollback()
+            mensaje = f"{error}"
+        return render(request, "administrador/inicio.html")
+    else:
+        mensaje = "Debe iniciar sesión"
+        return render(request, "login.html", {"mensaje": mensaje})
+
+    
+
 def salir (request):
     auth.logout(request)
     mensaje = "Se ha cerrado sesion"
     return redirect('/')
+
+
+
+##### Api
+
+
+
+# class OficinaAmbienteList(generics.ListCreateAPIView):
+#     queryset = oficinaAmbiente.objects.all()
+#     serializer_class = oficinaAmbienteSerializer
+
+# class OficinaAmbienteDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = oficinaAmbiente.objects.all()
+#     serializer_class = oficinaAmbienteSerializer

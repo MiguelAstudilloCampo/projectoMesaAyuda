@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% block encabezado %}
+    {% include "encabezado.html" %}
+{% endblock %}
+{% block menu %}
+    {% include "administrador/menu.html" %}
+{% endblock %}
+{% block contenido %}
+
+<div class="d-flex flex-column gap-4">
+    <div class="d-flex flex-column justify-content-center align-items-center gap-3 ">
+        <h3 class="text-center mt-3 fw-bold">Gestionar Usuarios</h3>
+        <a href="/vistaGestionarUsuarios/" class="btn btn-success">Agregar</a>
+    </div>
+
+    <div>
+        <div>
+            <table id="tblPersonas" class="table table-bordered table-hover">
+                <thead>
+                    <tr class="text-center verdeSena text-white">
+                        <th>Nombre Completo</th>
+                        <th>Correo Electrónico</th>
+                        <th>Tipo</th>              
+                        <th>Foto</th>              
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <!--para no mostrar lo del superusuario-->
+                        {% if usuario.is_superuser is False%}
+                        <tr>
+                            <td><div class="d-flex text-center justify-content-center">{{usuario.first_name}} {{usuario.last_name}}</div></td>
+                            <td> <div class="d-flex text-center justify-content-center">{{usuario.email}}</div></td>
+                            <td class="d-flex flex-column text-center   ">{{usuario.user_tipo}}</td>
+
+
+                            <td class="">
+                                <div class="d-flex aling-items-center justify-content-center"> 
+                                    {% if usuario.userFoto != "" %}
+                                    <img src="/media/{{usuario.user_foto}}" width="50" height="50">
+                                {% else %}
+                                    <img src="/media/user-logo.png" width="50" height="50">
+                                {% endif %}
+                                </div>
+                            </td>
+                            
+                        </tr>
+                        {%endif%}
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block piePagina %}
+    {% include "piePagina.html" %}
+{% endblock %}

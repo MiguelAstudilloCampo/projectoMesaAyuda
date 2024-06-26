@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+# import pkg_resources
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,13 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'MesaAyuda',
     'bootstrap5',
-    # 'rest_framework',
-    # 'corsheaders',
+    'rest_framework',
+    'corsheaders',
     # 'coreapi',
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -120,9 +121,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# REST_FRAMEWORK = {
-#     "DEFAULT_SCHEMA_CLASS":"rest_framework.schemas.coreapi.AutoSchema",
-# }
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS":"rest_framework.schemas.coreapi.AutoSchema",
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
@@ -150,7 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 CORS_ORIGIN_ALLOW_ALL = True
 
 
-# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -36,9 +36,9 @@ class Solicitud (models.Model):
     sol_usuario = models.ForeignKey(User,on_delete=models.PROTECT, db_comment="hace referencia al empleado que hace la solicitud")
     sol_descripcion = models.TextField(max_length=1000, db_comment="Texto que describe la solicitud del empleado")
     sol_oficina_ambiente = models.ForeignKey(oficinaAmbiente, on_delete=models.PROTECT,db_comment="Hace referencia a la oficia o ambiente donde se encuentra el equipo de la solicitud")
-    fecha_hora_creacion = models.DateTimeField(auto_now_add=True,
+    fecha_hora_creacion = models.DateField(auto_now_add=True,
                                              db_comment="Fecha y hora de creacion")
-    fecha_hora_actualizacion = models.DateTimeField(auto_now=True,
+    fecha_hora_actualizacion = models.DateField(auto_now=True,
                                                     db_comment="Fecha y hora de actualizacion")
 
     def __str__(self):
