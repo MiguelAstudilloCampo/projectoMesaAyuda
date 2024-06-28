@@ -21,6 +21,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("MesaAyuda.urls")),
-    # path("api/",include("MesaAyuda.urlsApi")),
-    
+    path("api/",include("MesaAyuda.urlsApi")),
 ]

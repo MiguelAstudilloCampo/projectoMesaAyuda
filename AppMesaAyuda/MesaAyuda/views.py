@@ -24,8 +24,8 @@ import matplotlib.pyplot as plt
 import calendar
 from django.db.models.functions import ExtractMonth
 
-# from rest_framework import generics
-# from MesaAyuda.serializers import oficinaAmbienteSerializer
+from rest_framework import generics
+from MesaAyuda.serializers import oficinaAmbienteSerializer
 
 # Create your views here.
 
@@ -304,9 +304,9 @@ def vistaRegistrarUsuario(request):
 def registrarUsuario(request):
     if request.user.is_authenticated:
         try:
-            nombres = request.POST["txtNombres"]
-            apellidos = request.POST["txtApellidos"]
-            correo = request.POST["txtCorreo"]
+            nombres = request.POST["nombres"]
+            apellidos = request.POST["apellidos"]
+            correo = request.POST["correo"]
             tipo = request.POST["cbTipo"]
             foto = request.FILES.get("foto")
             idRol = int(request.POST["cbRol"])
@@ -411,10 +411,10 @@ def salir (request):
 
 
 
-# class OficinaAmbienteList(generics.ListCreateAPIView):
-#     queryset = oficinaAmbiente.objects.all()
-#     serializer_class = oficinaAmbienteSerializer
+class OficinaAmbienteList(generics.ListCreateAPIView):
+    queryset = oficinaAmbiente.objects.all()
+    serializer_class = oficinaAmbienteSerializer
 
-# class OficinaAmbienteDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = oficinaAmbiente.objects.all()
-#     serializer_class = oficinaAmbienteSerializer
+class OficinaAmbienteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = oficinaAmbiente.objects.all()
+    serializer_class = oficinaAmbienteSerializer

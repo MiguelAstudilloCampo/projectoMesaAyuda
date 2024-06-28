@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'rest_framework',
     'corsheaders',
-    # 'coreapi',
+    'coreapi',
 ]
 
 MIDDLEWARE = [
