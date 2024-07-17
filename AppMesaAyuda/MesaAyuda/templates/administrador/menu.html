@@ -6,6 +6,7 @@
   nomodule
   src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
 ></script>
+<script src="../../static/Js/app.js"></script>
 <header>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <div class="container-fluid">
@@ -36,33 +37,57 @@
               />
               {% else %}
               <img
-                src="/media/user-logo.png"
+                src="../../../media/user-logo.png"
                 alt="No foto"
                 style="width: 40px"
                 class="rounded-pill"
               />
               {% endif %}</a
             >
+            <div>
+              <ul class="dropdown-menu" style="width:300px">
+                <li><span class="dropdown-item fw-bold">{{user.first_name}} {{user.last_name}}</span></li>
+                <li class="dropdown-item" style="margin-right: 20px; margin-top:2px">
+                    <select id="cbRolMenu" name="cbRolMenu" class="form-select" onchange="cambiarRol()">
+                       <option value="" selected class="fw-bold">Seleccione su Rol</option>
+                        {% for group in request.user.groups.all %}
+                          {% if group.name == 'Administrador' %}
+                            <option value="Administrador" selected>Administrador</option>
+                            <option value="Tecnico">Tecnico</option>
+                            <option value="Empleado">Empleado</option>
+                          {% else %}
+                            <option value="{{group.name}}" selected>{{group.name}}</option>    
+                          {% endif%}          
+                        {% endfor %}
+                    </select>
+                </li>
+                <li><a class="dropdown-item" href="/vistaGestionarCuenta/">Gestionar Tú Cuenta</a></li>
+                <li class="">
+                  <a class="dropdown-item" href="/inicioAdministrador/">Inicio</a>
+                </li>
+                <li class="">
+                  <a class="dropdown-item" href="/admin/">Admin</a>
+                </li>
+                <li><a class="dropdown-item" href="/salir/">Salir</a></li>
+            </ul>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+            >Reportes</a
+            >
             <ul class="dropdown-menu">
               <li class="">
-                <a class="dropdown-item" href="/inicioAdministrador/">Inicio</a>
+                <a class="dropdown-item" href="/reportesEstadisticos/">Graficas</a>
               </li>
               <li class="">
-                <a class="dropdown-item" href="/listarCasosParaAsignar/">Casos</a>
+                <a class="dropdown-item" href="/pdfSolicitudes/">Reportes Pdf</a>
               </li>
-              <li class="">
-                <a class="dropdown-item" href="/vistaGestionarUsuarios/">Registrar Usuarios</a>
-              </li>
-              <li class="">
-                <a class="dropdown-item" href="/vistaMirarUsuarios/">Gestionar Usuarios</a>
-              </li>
-              <li class="">
-                <a class="dropdown-item" href="/admin/">Admin</a>
-              </li>
-              <li class="">
-                <a class="dropdown-item" href="/graficas/">Reportes</a>
-              </li>
-              <li><a class="dropdown-item" href="/salir/">Salir</a></li>
             </ul>
           </li>
           <li class="nav-item">

@@ -24,6 +24,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.1/css/buttons.dataTables.css">
 
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css">
+<script src="../../static/Js/dataTable.js"></script>
 
 <div class="container d-flex flex-column justify-content-center align-items-center gap-4">
 
@@ -100,13 +101,7 @@
   </div>
         </div>
         <script>
-            new DataTable('#tblProductos', {
-                layout: {
-                    topStart: {
-                        buttons: ['excel', 'pdf', 'print']
-                    }
-                }
-            });
+          cargarDataTable($('#tblProductos'), "Casos",3);
         </script>
     </div>
 

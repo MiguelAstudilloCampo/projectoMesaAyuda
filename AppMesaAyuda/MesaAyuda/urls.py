@@ -36,7 +36,8 @@ urlpatterns = [
     path('registrarUsuario/', views.registrarUsuario),
     path('vistaMirarUsuarios/', views.vistaGestionarUsuarios),
     path('recuperarClave/', views.recuperarClave),
-    path('graficas/', views.estadistica),
+    path('reportesEstadisticos/', views.estadisticas),
+    path('pdfSolicitudes/', views.generarPdfSolicitudes),
     path('salir/', views.salir),
     
     

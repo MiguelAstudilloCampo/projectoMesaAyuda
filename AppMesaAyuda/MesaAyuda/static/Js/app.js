@@ -21,3 +21,20 @@ function mostrarImagen (evento){
   const img = document.getElementById('imagenMostrar')
   img.setAttribute('src',url)
 }
+
+let tecnicos = []
+
+
+function cambiarRol() {
+    const rol = document.getElementById('cbRolMenu')
+    console.log(rol.value)
+    if (rol.value == "Tecnico") {
+        location.href = "/inicioTecnico/"
+    }
+    if (rol.value == "Administrador") {
+        location.href = "/inicioAdministrador/"
+    }
+    if (rol.value == "Empleado") {
+        location.href = "/inicioEmpleado/"
+    }
+}

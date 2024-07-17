@@ -12,8 +12,7 @@ tipoSolucion = [('Parcial', 'Parcial'),('Definitiva', 'Definitiva')]
 class oficinaAmbiente (models.Model):
     ofi_tipo = models.CharField(max_length=30, choices=tipoOficina,db_comment="tipo de oficina" )
     ofi_nombre = models.CharField(max_length=60, unique=True,db_comment="Nombre oficina o ambiente")
-    fecha_hora_creacion = models.DateTimeField(auto_now_add=True,
-                                             db_comment="Fecha y hora de creacion")
+    fecha_hora_creacion = models.DateTimeField(auto_now_add=True,                                   db_comment="Fecha y hora de creacion")
     fecha_hora_actualizacion = models.DateTimeField(auto_now=True,
                                                     db_comment="Fecha y hora de actualizacion")
 
